@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Contact Form Validation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+    body{
+      min-height:100vh;
+      background:#00b894;
+      font-family: 'Poppins', sans-serif;
+    }
+    .wrapper{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:450px;
+      height:auto;
+      background:#fff;
+      max-width:100%;
+      box-shadow:0 0 20px rgba(0,0,0,0.2);
+      padding:20px 30px 40px 30px;
+      max-width:100% !important;
+      border-radius: 3px;
+    }
+    .form-control{
+      position: relative;
+    }
+    form h1{
+      text-align:center;
+      color:#111;
+      margin-top: 1rem;
+      font-weight:500;
+      color: green;
+    }
+    label{
+      margin:10px 0 5px 0;
+      display:block;
+    }
+    form input,textarea{
+      display:block;
+      width:100%;
+      padding:10px;
+      box-sizing:border-box;
+      border:1px solid #666;
+      font-size:14px;
+      border-radius: 3px;
+    }
+    form textarea{
+      display:block;
+      width:100%;
+      padding:10px;
+      box-sizing:border-box;
+      height:100px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .form-control i{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-30%);
+      right: 10px;
+      visibility: hidden;
+    }
+    .form-control-msg i{
+      position: absolute;
+      top: 68%;
+      transform: translateY(0%);
+      right: 10px;
+    }
+    form button{
+      display:block;
+      background:green;
+      color:white;
+      text-align:center;
+      width:100%;
+      border:none;
+      margin-top:30px;
+      font-size:18px;
+      font-weight:500;
+      padding:10px 0;
+      text-transform:uppercase;
+      cursor:pointer;
+      border-radius: 3px;
+    }
+    .also-visit{
+      display: block;
+      text-align:center;
+      margin:20px 0 0 0;
+      font-weight: 700;
+      font-size: 17px;
+      color:red;
+      font-style: italic;
+    }
+  </style>
+  <script src="https://use.fontawesome.com/a85c5ebd47.js"></script>
+</head>
+<body>
+
+
+<div class="wrapper">
+  <form class="form-group" action="javascript:void(0)" method="post">
+    <h1>Sent a message</h1>
+
+    <div class="form-control form-control-name">
+      <label for="name">Full Name<span style="color:red;">*</span></label>
+      <input id="name" type="text" name="Name" placeholder="Enter Your Name" autocomplete="off">
+      <span style="font-size:13px;" class="error-text-name"></span>
+      <i class="fa fa-check-circle" aria-hidden="true"></i>
+      <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+    </div>
+
+    <div class="form-control form-control-email">
+      <label for="email">Email<span style="color:red;">*</span></label>
+      <input id="email" type="email" name="Email" placeholder="Enter Your Email" autocomplete="off">
+      <span style="font-size:13px;" class="error-text-email"></span>
+      <i class="fa fa-check-circle" aria-hidden="true"></i>
+      <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+    </div>
+
+    <div class="form-control form-control-sub">
+      <label for="sub">Subject<span style="color:red;">*</span></label>
+      <input id="sub" type="text" name="Subject" placeholder="Subject" autocomplete="off">
+      <span style="font-size:13px;" class="error-text-sub"></span>
+      <i class="fa fa-check-circle" aria-hidden="true"></i>
+      <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+    </div>
+
+    <div class="form-control form-control-phn">
+      <label for="phn">Mobile number<span style="color:red;">*</span></label>
+      <input id="phn" type="tel" name="Mobile no" placeholder="Enter Your Mobile Number" autocomplete="off">
+      <span style="font-size:13px;" class="error-text-phn"></span>
+      <i class="fa fa-check-circle" aria-hidden="true"></i>
+      <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+    </div>
+
+    <div class="form-control form-control-msg">
+      <label for="email">Message<span style="color:red;">*</span></label>
+      <textarea id="msg" name="Message" placeholder="Enter Your Message" autocomplete="off"></textarea>
+      <span style="font-size:13px;" class="error-text-msg"></span>
+      <i class="fa fa-check-circle" aria-hidden="true"></i>
+      <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+    </div>
+
+    <button>Sent</button>
+
+    <a class="also-visit" href="../Sing Up Form Validation/sing-up-form-validation.html">Visit Sing Up Form Validation</a>
+
+  </form>
+</div>
+
+
+<script>
+
+
+  document.querySelector(".form-group").addEventListener("submit", function(){
+
+    // Declare All ID
+    let name = document.querySelector("#name");
+    let email = document.querySelector("#email");
+    let sub = document.querySelector("#sub");
+    let phn = document.querySelector("#phn");
+    let msg = document.querySelector("#msg");
+
+    // Error or Success Text
+    let errorName= document.querySelector(".error-text-name")
+    let errorEmail= document.querySelector(".error-text-email")
+    let errorSub= document.querySelector(".error-text-sub")
+    let errorPhn= document.querySelector(".error-text-phn")
+    let errorMsg= document.querySelector(".error-text-msg");
+
+    // ICON DECLARE
+    let nameIconSuccess = document.querySelector(".form-control-name .fa-check-circle");
+    let nameIconError = document.querySelector(".form-control-name .fa-exclamation-circle");
+
+    let emailIconSuccess = document.querySelector(".form-control-email .fa-check-circle");
+    let emailIconError = document.querySelector(".form-control-email .fa-exclamation-circle");
+
+    let subIconSuccess = document.querySelector(".form-control-sub .fa-check-circle");
+    let subIconError = document.querySelector(".form-control-sub .fa-exclamation-circle");
+
+    let phnIconSuccess = document.querySelector(".form-control-phn .fa-check-circle");
+    let phnIconError = document.querySelector(".form-control-phn .fa-exclamation-circle");
+
+    let msgIconSuccess = document.querySelector(".form-control-msg .fa-check-circle");
+    let msgIconError = document.querySelector(".form-control-msg .fa-exclamation-circle");
+
+    // Name Validation
+    if(name.value == ""){
+      errorName.innerHTML = "Name is required!";
+      name.style.borderColor ="red";
+      errorName.style.color ="red";
+      nameIconError.style.visibility ="visible";
+      nameIconError.style.color ="red";
+      nameIconSuccess.style.visibility ="hidden";
+    }
+    if(name.value != "" && name.value.length <= "3"){
+      errorName.innerHTML = "Name must be at least 4 character!";
+      name.style.borderColor ="red";
+      errorName.style.color ="red";
+      nameIconError.style.visibility ="visible";
+      nameIconError.style.color ="red";
+      nameIconSuccess.style.visibility ="hidden";
+    }
+    if(name.value != "" && name.value.length >= "4"){
+      errorName.innerHTML = "Looks good!";
+      name.style.borderColor ="green";
+      errorName.style.color ="green";
+      nameIconError.style.visibility ="hidden";
+      nameIconSuccess.style.visibility ="visible";
+      nameIconSuccess.style.color ="green";
+    }
+
+    // Email Validation
+    if(email.value == ""){
+      errorEmail.innerHTML = "Email is required!";
+      email.style.borderColor ="red";
+      errorEmail.style.color ="red";
+      emailIconError.style.visibility ="visible";
+      emailIconError.style.color ="red";
+      emailIconSuccess.style.visibility ="hidden";
+    }
+    if(email.value != ""){
+      errorEmail.innerHTML = "Looks good!";
+      email.style.borderColor ="green";
+      errorEmail.style.color ="green";
+      emailIconError.style.visibility ="hidden";
+      emailIconSuccess.style.visibility ="visible";
+      emailIconSuccess.style.color ="green";
+    }
+
+    // Subject Validation
+    if(sub.value == ""){
+      errorSub.innerHTML = "Subject is required!";
+      sub.style.borderColor ="red";
+      errorSub.style.color ="red";
+      subIconError.style.visibility ="visible";
+      subIconError.style.color ="red";
+      subIconSuccess.style.visibility ="hidden";
+    }
+    if(sub.value != "" && sub.value.length <= "3"){
+      errorSub.innerHTML = "Subject must be at least 4 character!";
+      sub.style.borderColor ="red";
+      errorSub.style.color ="red";
+      subIconError.style.visibility ="visible";
+      subIconError.style.color ="red";
+      subIconSuccess.style.visibility ="hidden";
+    }
+    if(sub.value != "" && sub.value.length >= "4"){
+      errorSub.innerHTML = "Looks good!";
+      sub.style.borderColor ="green";
+      errorSub.style.color ="green";
+      subIconError.style.visibility ="hidden";
+      subIconSuccess.style.visibility ="visible";
+      subIconSuccess.style.color ="green";
+    }
+
+    // Mobile Number Validation
+    if(phn.value == ""){
+      errorPhn.innerHTML = "Mobile number is required!";
+      phn.style.borderColor ="red";
+      errorPhn.style.color ="red";
+      phnIconError.style.visibility ="visible";
+      phnIconError.style.color ="red";
+      phnIconSuccess.style.visibility ="hidden";
+    }
+    if(phn.value != "" && phn.value.length != "10"){
+      errorPhn.innerHTML = "Mobile Number must be 10 digit!";
+      phn.style.borderColor ="red";
+      errorPhn.style.color ="red";
+      phnIconError.style.visibility ="visible";
+      phnIconError.style.color ="red";
+      phnIconSuccess.style.visibility ="hidden";
+    }
+    if(phn.value != "" && phn.value.length == "10"){
+      errorPhn.innerHTML = "Looks good!";
+      phn.style.borderColor ="green";
+      errorPhn.style.color ="green";
+      phnIconError.style.visibility ="hidden";
+      phnIconSuccess.style.visibility ="visible";
+      phnIconSuccess.style.color ="green";
+    }
+
+    // Message Validation
+    if(msg.value == ""){
+      errorMsg.innerHTML = "Message is required!";
+      msg.style.borderColor ="red";
+      errorMsg.style.color ="red";
+      msgIconError.style.visibility ="visible";
+      msgIconError.style.color ="red"
+      msgIconSuccess.style.visibility ="hidden";
+    }
+    if(msg.value != "" && msg.value.length <= "9"){
+      errorMsg.innerHTML = "Message must be at least 10 character!";
+      msg.style.borderColor ="red";
+      errorMsg.style.color ="red";
+      msgIconError.style.visibility ="visible";
+      msgIconError.style.color ="red";
+      msgIconSuccess.style.visibility ="hidden";
+    }
+    if(msg.value != "" && msg.value.length >= "10"){
+      errorMsg.innerHTML = "Looks good!";
+      msg.style.borderColor ="green";
+      errorMsg.style.color ="green";
+      msgIconError.style.visibility ="hidden";
+      msgIconSuccess.style.visibility ="visible";
+      msgIconSuccess.style.color ="green";
+    }
+
+  })
+
+</script>
+</body>
+</html>
